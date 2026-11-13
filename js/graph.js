@@ -49,7 +49,7 @@ export class UnderwaterGraph {
   initSimulation() {
     this.simulation = d3.forceSimulation()
       .alphaDecay(0) // 0にすることでシミュレーションを停止させず、常時水中浮遊させる
-      .velocityDecay(0.25) // 水の抵抗感（数値が大きいほど粘り気のある動きになる）
+      .velocityDecay(0.4) // 水の抵抗感（数値が大きいほど粘り気のある動きになる）
       .on('tick', () => this.onTick());
   }
 
@@ -114,12 +114,12 @@ export class UnderwaterGraph {
         url: node.url,
         type: 'DETAIL',
         // 分裂元座標からほんの少しだけずらして配置し、反発力で一気に広がらせる
-        x: originX + Math.cos(angle) * 12,
-        y: originY + Math.sin(angle) * 12,
-        vx: Math.cos(angle) * 4,
-        vy: Math.sin(angle) * 4,
+        x: originX + Math.cos(angle) * 16,
+        y: originY + Math.sin(angle) * 16,
+        vx: Math.cos(angle) * 0.8,
+        vy: Math.sin(angle) * 0.8,
         phase: Math.random() * Math.PI * 2,
-        speed: 0.015 + Math.random() * 0.01,
+        speed: 0.015 + Math.random() * 0.005,
         halfW: 75,
         halfH: 24
       };
@@ -336,12 +336,12 @@ export class UnderwaterGraph {
           d3.forceLink(this.links)
             .id((d) => d.id)
             .distance(150)
-            .strength(0.4)
+            .strength(0.2)
         )
-        .force('charge', d3.forceManyBody().strength(-380))
+        .force('charge', d3.forceManyBody().strength(-260))
         .force('collide', d3.forceCollide().radius((d) => Math.max(d.halfW, d.halfH) + 20).iterations(2))
-        .force('x', d3.forceX(this.width / 2).strength(0.04))
-        .force('y', d3.forceY(this.height / 2).strength(0.04));
+        .force('x', d3.forceX(this.width / 2).strength(0.03))
+        .force('y', d3.forceY(this.height / 2).strength(0.03));
     }
 
     this.simulation.alpha(0.8).restart();
