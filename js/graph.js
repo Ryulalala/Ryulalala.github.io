@@ -335,11 +335,14 @@ export class UnderwaterGraph {
           'link',
           d3.forceLink(this.links)
             .id((d) => d.id)
-            .distance(150)
-            .strength(0.2)
+            .distance(220)
+            .strength(0.15)
         )
-        .force('charge', d3.forceManyBody().strength(-260))
-        .force('collide', d3.forceCollide().radius((d) => Math.max(d.halfW, d.halfH) + 20).iterations(2))
+        .force('charge', d3.forceManyBody().strength(-250))
+        .force('collide', 
+          d3.forceCollide()
+          .radius((d) => d.halfW * 0.65 + d.halfH * 0.35 + 18)
+          .iterations(2))
         .force('x', d3.forceX(this.width / 2).strength(0.03))
         .force('y', d3.forceY(this.height / 2).strength(0.03));
     }
