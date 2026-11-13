@@ -83,7 +83,36 @@ export class I18nManager {
       bookListEl.innerHTML = '';
       this.data.sections.books.items.forEach((item) => {
         const li = document.createElement('li');
-        li.textContent = item[lang];
+
+        if (item.url) {
+          li.className = 'group inline-flex items-center gap-1.5 cursor-pointer select-none';
+          li.title = this.isTouchDevice
+            ? (lang === 'ja' ? 'タップでAmazonを開く' : 'Tap to open on Amazon')
+            : (lang === 'ja' ? 'ダブルクリックでAmazonを開く' : 'Double-click to open on Amazon');
+
+          // 青色のリンクテキストのみを表示
+          const titleSpan = document.createElement('span');
+          titleSpan.className = 'text-sky-400 underline decoration-sky-400/60 underline-offset-4 group-hover:text-sky-300 group-hover:decoration-sky-300 transition-colors';
+          titleSpan.textContent = item[lang];
+
+          // 外部リンクアイコン（SVG）
+          const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          iconSvg.setAttribute('viewBox', '0 0 20 20');
+          iconSvg.setAttribute('fill', 'currentColor');
+          iconSvg.setAttribute('class', 'w-4 h-4 text-sky-400 group-hover:text-sky-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform');
+          iconSvg.innerHTML = '<path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z" clip-rule="evenodd" />';
+
+          li.appendChild(titleSpan);
+          li.appendChild(iconSvg);
+
+          const eventType = this.isTouchDevice ? 'click' : 'dblclick';
+          li.addEventListener(eventType, () => {
+            window.open(item.url, '_blank', 'noopener,noreferrer');
+          });
+        } else {
+          li.textContent = item[lang];
+        }
+
         bookListEl.appendChild(li);
       });
     }
