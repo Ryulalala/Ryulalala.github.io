@@ -1,0 +1,57 @@
+{
+  "siteTitle": {
+    "ja": "Ryulalalaの秘密基地",
+    "en": "Ryulalala's Secret Base"
+  },
+  "siteSubtitle": {
+    "ja": "深海で思考と知識を漂わせるパーソナルスペース",
+    "en": "A personal space where thoughts and knowledge drift in the deep sea"
+  },
+  "sections": {
+    "languages": {
+      "title": {
+        "ja": "1. 学んでいる言語",
+        "en": "1. Languages I'm Learning"
+      },
+      "items": [
+        { "ja": "Python", "en": "Python" },
+        { "ja": "Scala", "en": "Scala" },
+        { "ja": "Javascript", "en": "Javascript" },
+        { "ja": "英語", "en": "English" }
+      ]
+    },
+    "books": {
+      "title": {
+        "ja": "2. 好きな本",
+        "en": "2. Favorite Books"
+      },
+      "items": [
+        { "ja": "The meaning of your life", "en": "The meaning of your life" }
+      ]
+    },
+    "quotes": {
+      "title": {
+        "ja": "3. 好きな言葉",
+        "en": "3. Favorite Words"
+      }
+    },
+    "graph": {
+      "title": {
+        "ja": "4. これから学習したいこと・学習しているもの",
+        "en": "4. What I'm Learning & Want to Learn"
+      },
+      "instructionPc": {
+        "ja": "※四角をドラッグで移動 / ダブルクリックで展開・リンク遷移 / 背景ダブルクリックで戻る",
+        "en": "* Drag to move / Double-click node to expand or open link / Double-click background to return"
+      },
+      "instructionTouch": {
+        "ja": "※ドラッグで移動 / タップで展開・リンク遷移 / 背景タップで戻る",
+        "en": "* Drag to move / Tap node to expand or open link / Tap background to return"
+      },
+      "backHint": {
+        "ja": "背景をダブルクリック（スマホはタップ）で一覧へ戻る",
+        "en": "Double-click (or tap) background to return"
+      }
+    }
+  }
+}
