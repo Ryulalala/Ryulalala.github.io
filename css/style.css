@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+/* 深海をイメージしたグラフ枠内の背景グラデーション */
+.deep-sea-bg {
+  background: radial-gradient(circle at 50% 35%, #0f172a 0%, #020617 75%, #01030d 100%);
+}
+
+/* グラフ内の四角（ノード）の共通スタイル */
+.graph-node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* 中心座標(x, y)を基準に配置するため、自身のサイズの半分(-50%, -50%)ずらす */
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, opacity;
+  touch-action: none; /* スマホでドラッグしたときに画面がスクロールするのを防ぐ */
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+/* 状態1：大まかなジャンルのノード枠線（インディゴ系） */
+.node-category {
+  border: 2px solid #818cf8; /* indigo-400 */
+  background-color: rgba(15, 23, 42, 0.85);
+  box-shadow: 0 0 15px rgba(129, 140, 248, 0.25);
+}
+.node-category:hover {
+  border-color: #a5b4fc; /* indigo-300 */
+  box-shadow: 0 0 22px rgba(129, 140, 248, 0.5);
+}
+
+/* 状態2：細かなジャンル（リンクあり：シアンブルー＋微弱な発光） */
+.node-detail-link {
+  border: 1.5px solid #38bdf8; /* sky-400 */
+  background-color: rgba(15, 23, 42, 0.88);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+.node-detail-link:hover {
+  border-color: #7dd3fc; /* sky-300 */
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.65);
+}
+
+/* 状態2：細かなジャンル（リンクなし：スレートグレー） */
+.node-detail-nolink {
+  border: 1.5px solid #64748b; /* slate-500 */
+  background-color: rgba(15, 23, 42, 0.75);
+}
+
+/* ノード同士を結ぶ関連線（無向エッジ） */
+.graph-link {
+  stroke: rgba(148, 163, 184, 0.35); /* slate-400 半透明 */
+  stroke-width: 1.5px;
+  transition: opacity 0.4s ease;
+}
