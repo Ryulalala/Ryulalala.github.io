@@ -1,0 +1,101 @@
+{
+  "categories": [
+    {
+      "id": "math",
+      "label": {
+        "ja": "数学",
+        "en": "Mathematics"
+      },
+      "nodes": [
+        {
+          "id": "elem_algebra",
+          "label": { "ja": "初等代数概論", "en": "Elementary Algebra" },
+          "url": "https://github.com/"
+        },
+        {
+          "id": "linear_algebra",
+          "label": { "ja": "線形代数", "en": "Linear Algebra" },
+          "url": "https://www.youtube.com/"
+        },
+        {
+          "id": "analysis",
+          "label": { "ja": "解析学", "en": "Mathematical Analysis" },
+          "url": null
+        },
+        {
+          "id": "category_theory",
+          "label": { "ja": "圏論", "en": "Category Theory" },
+          "url": "https://github.com/"
+        }
+      ],
+      "links": [
+        { "source": "elem_algebra", "target": "linear_algebra" },
+        { "source": "elem_algebra", "target": "category_theory" },
+        { "source": "linear_algebra", "target": "analysis" }
+      ]
+    },
+    {
+      "id": "programming",
+      "label": {
+        "ja": "プログラミング",
+        "en": "Programming"
+      },
+      "nodes": [
+        {
+          "id": "fp",
+          "label": { "ja": "関数型プログラミング", "en": "Functional Programming" },
+          "url": "https://github.com/"
+        },
+        {
+          "id": "oop",
+          "label": { "ja": "オブジェクト指向プログラミング", "en": "Object-Oriented Programming" },
+          "url": null
+        },
+        {
+          "id": "cs",
+          "label": { "ja": "コンピュータサイエンス", "en": "Computer Science" },
+          "url": "https://www.youtube.com/"
+        },
+        {
+          "id": "rust",
+          "label": { "ja": "Rust", "en": "Rust" },
+          "url": "https://github.com/"
+        }
+      ],
+      "links": [
+        { "source": "cs", "target": "fp" },
+        { "source": "cs", "target": "oop" },
+        { "source": "fp", "target": "rust" },
+        { "source": "oop", "target": "rust" }
+      ]
+    },
+    {
+      "id": "lit_phil",
+      "label": {
+        "ja": "文学、哲学",
+        "en": "Literature & Philosophy"
+      },
+      "nodes": [
+        {
+          "id": "dostoevsky",
+          "label": { "ja": "ドストエフスキー", "en": "Dostoevsky" },
+          "url": "https://www.youtube.com/"
+        },
+        {
+          "id": "spinoza",
+          "label": { "ja": "スピノザ", "en": "Spinoza" },
+          "url": null
+        },
+        {
+          "id": "kobayashi",
+          "label": { "ja": "小林英雄", "en": "Hideo Kobayashi" },
+          "url": "https://github.com/"
+        }
+      ],
+      "links": [
+        { "source": "dostoevsky", "target": "kobayashi" },
+        { "source": "spinoza", "target": "kobayashi" }
+      ]
+    }
+  ]
+}
