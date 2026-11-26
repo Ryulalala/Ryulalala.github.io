@@ -10,22 +10,32 @@
         {
           "id": "elem_algebra",
           "label": { "ja": "初等代数概論", "en": "Elementary Algebra" },
-          "url": "https://github.com/"
+          "url": "https://syllabus.zen.ac.jp/subjects/2026/MTH-1-C1-1030-003"
         },
         {
           "id": "linear_algebra",
           "label": { "ja": "線形代数", "en": "Linear Algebra" },
-          "url": "https://www.youtube.com/"
+          "url": "https://syllabus.zen.ac.jp/subjects/2026/MTH-1-C1-1030-004"
         },
         {
           "id": "analysis",
           "label": { "ja": "解析学", "en": "Mathematical Analysis" },
-          "url": null
+          "url": "https://syllabus.zen.ac.jp/subjects/2026/MTH-1-C1-0204-005"
         },
         {
           "id": "category_theory",
           "label": { "ja": "圏論", "en": "Category Theory" },
-          "url": "https://github.com/"
+          "url": "https://syllabus.zen.ac.jp/subjects/2027/MTH-3-C1-1030-004"
+        },
+        {
+          "id": "Graph theory",
+          "label": { "ja": "グラフ理論", "en": "Graph theory" },
+          "url": "https://syllabus.zen.ac.jp/subjects/2026/MTH-1-C1-0204-008"
+        },
+        {
+          "id": "Set theory and logic",
+          "label": { "ja": "集合と論理", "en": "Set theory and logic" },
+          "url": "https://syllabus.zen.ac.jp/subjects/2026/MTH-2-C1-1030-002"
         }
       ]
     },
@@ -39,22 +49,22 @@
         {
           "id": "fp",
           "label": { "ja": "関数型プログラミング", "en": "Functional Programming" },
-          "url": "https://github.com/"
+          "url": "https://syllabus.zen.ac.jp/subjects/2027/INF-3-C1-1030-002"
         },
         {
           "id": "oop",
           "label": { "ja": "オブジェクト指向プログラミング", "en": "Object-Oriented Programming" },
-          "url": null
+          "url": "https://syllabus.zen.ac.jp/subjects/2026/INF-2-C1-1030-005"
         },
         {
           "id": "cs",
           "label": { "ja": "コンピュータサイエンス", "en": "Computer Science" },
-          "url": "https://www.youtube.com/"
+          "url": "https://syllabus.zen.ac.jp/subjects/2026/INF-2-C1-1030-006"
         },
         {
           "id": "rust",
           "label": { "ja": "Rust", "en": "Rust" },
-          "url": "https://github.com/"
+          "url": "https://doc.rust-lang.org/book/"
         }
       ]
     },
@@ -68,7 +78,7 @@
         {
           "id": "dostoevsky",
           "label": { "ja": "ドストエフスキー", "en": "Dostoevsky" },
-          "url": "https://www.youtube.com/"
+          "url": null
         },
         {
           "id": "spinoza",
@@ -78,7 +88,7 @@
         {
           "id": "kobayashi",
           "label": { "ja": "小林英雄", "en": "Hideo Kobayashi" },
-          "url": "https://github.com/"
+          "url": null
         }
       ]
     }

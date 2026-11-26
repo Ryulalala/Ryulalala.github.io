@@ -198,11 +198,32 @@ export class UnderwaterGraph {
     let startY = 0;
     let isDragged = false;
     let lastPointerType = 'mouse';
+    nodeData.isHovered = false;
 
     // ポインターの種類（mouse か touch か）を記録
     el.addEventListener('pointerdown', (e) => {
       lastPointerType = e.pointerType;
     });
+
+    //マウスが乗ったら停止
+    el.addEventListener('pointerenter', (e) => {
+      if (e.pointerType === 'mouse') {
+        nodeData.isHovered = true;
+        nodeData.fx = nodeData.x;
+        nodeData.fy = nodeData.y;
+        nodeData.vx = 0;
+        nodeData.vy = 0;
+      }
+    })
+
+    //マウスが離れたら固定を解除
+    el.addEventListener('pointerleave', (e) => {
+      if (e.pointerType === 'mouse') {
+        nodeData.isHovered = false;
+        nodeData.fx = null;
+        nodeData.fy = null;
+      }
+    })
 
     // D3ドラッグの設定
     const dragBehavior = d3.drag()
@@ -225,13 +246,26 @@ export class UnderwaterGraph {
       })
       .on('end', () => {
         // ドラッグ終了時に固定を解除し、再び水中を漂わせる
-        nodeData.fx = null;
-        nodeData.fy = null;
-
-        // スマホ・タブレット（touch）で、ドラッグせずに指を離した場合は「シングルタップ」として処理
-        if (lastPointerType === 'touch' && !isDragged) {
-          this.handleNodeActivate(nodeData);
+        if (nodeData.isHovered){
+          nodeData.fx = nodeData.x;
+          nodeData.fy = nodeData.y;
+          nodeData.vx = 0;
+          nodeData.vy = 0;
+        } else {
+          nodeData.fx = null;
+          nodeData.fy = null;
         }
+        
+        // スマホ・タブレット（touch）で、ドラッグせずに指を離した場合は「シングルタップ」として処理
+        if (!isDragged) {
+          if (nodeData.type === 'DETAIL' && nodeData.url) {
+            this.handleNodeActivate(nodeData);
+          }
+          else if (lastPointerType === 'touch') {
+          this.handleNodeActivate(nodeData);
+          }
+        }
+        
       });
 
     d3.select(el).call(dragBehavior);
@@ -337,6 +371,11 @@ export class UnderwaterGraph {
 
     this.nodes.forEach((d) => {
       // 1. 水中を漂うような微弱な周期的フォース（サイン・コサイン波）を加える
+      if (d.isHovered) {
+        d.vx = 0;
+        d.vy = 0;
+        return
+      }
       const waveAngle = this.time * d.speed + d.phase;
       d.vx += Math.cos(waveAngle) * 0.10;
       d.vy += Math.sin(waveAngle * 0.9) * 0.9;

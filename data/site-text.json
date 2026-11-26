@@ -43,7 +43,7 @@
         "en": "4. What I'm Learning & Want to Learn"
       },
       "instructionPc": {
-        "ja": "※四角をドラッグで移動 / ダブルクリックで展開・リンク遷移 / 背景ダブルクリックで戻る",
+        "ja": "※四角をドラッグで移動 / ダブルクリックで展開/ クリックでリンク遷移 / 背景ダブルクリックで戻る",
         "en": "* Drag to move / Double-click node to expand or open link / Double-click background to return"
       },
       "instructionTouch": {
