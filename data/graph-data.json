@@ -69,10 +69,10 @@
       ]
     },
     {
-      "id": "lit_phil",
+      "id": "literature",
       "label": {
-        "ja": "文学、哲学",
-        "en": "Literature & Philosophy"
+        "ja": "文学",
+        "en": "Literature"
       },
       "nodes": [
         {
@@ -90,6 +90,46 @@
           "label": { "ja": "小林英雄", "en": "Hideo Kobayashi" },
           "url": null
         }
+      ]
+    },
+    {
+      "id": "Philosophy",
+      "label": {
+        "ja": "哲学",
+        "en": "Philosophy"
+      },
+      "nodes": [
+        {
+          "id": "Western philosophy",
+          "label": { "ja": "西洋哲学", "en": "Western philosophy" },
+          "url": null
+        },
+        {
+          "id": "Eastern philosophy",
+          "label": { "ja": "東洋哲学", "en": "Eastern philosophy" },
+          "url": null
+        },
+        {
+          "id": "Zen Buddhism",
+          "label": { "ja": "禅", "en": "Zen Buddhism" },
+          "url": null
+        },
+        {
+          "id": "Stoicism",
+          "label": { "ja": "ストイシズム", "en": "Stoicism" },
+          "url": null
+        },
+        {
+          "id": "Georges Bataille",
+          "label": { "ja": "バタイユ（ジョルジュ・バタイユ）", "en": "Georges Bataille" },
+          "url": null
+        },
+        {
+          "id": "Aristotle",
+          "label": { "ja": "アリストテレス", "en": "Aristotle" },
+          "url": null
+        }
+
       ]
     }
   ]
