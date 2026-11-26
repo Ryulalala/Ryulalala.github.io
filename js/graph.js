@@ -16,7 +16,6 @@ export class UnderwaterGraph {
 
     // DOM要素の取得
     this.container = document.getElementById('graph-container');
-    this.svg = d3.select('#graph-svg');
     this.nodesLayer = document.getElementById('graph-nodes-layer');
     this.activeHeader = document.getElementById('graph-active-header');
     this.categoryTitleEl = document.getElementById('graph-category-title');
@@ -27,7 +26,6 @@ export class UnderwaterGraph {
 
     // 現在描画中のノード配列・リンク配列
     this.nodes = [];
-    this.links = [];
 
     // D3 Force Simulation インスタンス
     this.simulation = null;
@@ -49,7 +47,7 @@ export class UnderwaterGraph {
   initSimulation() {
     this.simulation = d3.forceSimulation()
       .alphaDecay(0) // 0にすることでシミュレーションを停止させず、常時水中浮遊させる
-      .velocityDecay(0.4) // 水の抵抗感（数値が大きいほど粘り気のある動きになる）
+      .velocityDecay(0.3) // 水の抵抗感（数値が大きいほど粘り気のある動きになる）
       .on('tick', () => this.onTick());
   }
 
@@ -86,7 +84,6 @@ export class UnderwaterGraph {
       };
     });
 
-    this.links = [];
     this.renderDOM();
     this.updateForces();
   }
@@ -125,12 +122,6 @@ export class UnderwaterGraph {
       };
     });
 
-    // リンクデータをコピー（D3がsource/targetをオブジェクト参照に書き換えるため）
-    this.links = categoryData.links.map((link) => ({
-      source: link.source,
-      target: link.target
-    }));
-
     this.renderDOM();
     this.updateForces();
   }
@@ -139,16 +130,7 @@ export class UnderwaterGraph {
    * SVGの線とHTMLの四角ノードをDOMに生成・バインドする
    */
   renderDOM() {
-    // 1. SVGの線（エッジ）の描画
-    this.svg.selectAll('*').remove();
-    this.linkSelection = this.svg
-      .selectAll('line')
-      .data(this.links)
-      .enter()
-      .append('line')
-      .attr('class', 'graph-link');
-
-    // 2. HTMLの四角（ノード）の描画
+    // 1. HTMLの四角（ノード）の描画
     this.nodesLayer.innerHTML = '';
 
     this.nodes.forEach((nodeData) => {
@@ -323,26 +305,18 @@ export class UnderwaterGraph {
     if (this.mode === 'OVERVIEW') {
       // 大ジャンル一覧モード：ゆったりと互いに距離を保つ
       this.simulation
-        .force('link', null)
-        .force('charge', d3.forceManyBody().strength(-450))
+        .force('charge', d3.forceManyBody().strength(-400))
         .force('collide', d3.forceCollide().radius((d) => Math.max(d.halfW, d.halfH) + 30).iterations(2))
         .force('x', d3.forceX(this.width / 2).strength(0.03))
         .force('y', d3.forceY(this.height / 2).strength(0.03));
     } else {
       // 詳細モード：関連線で結びつつバランスよく広がる
       this.simulation
-        .force(
-          'link',
-          d3.forceLink(this.links)
-            .id((d) => d.id)
-            .distance(220)
-            .strength(0.15)
-        )
         .force('charge', d3.forceManyBody().strength(-250))
-        .force('collide', 
+        .force('collide',
           d3.forceCollide()
-          .radius((d) => d.halfW * 0.65 + d.halfH * 0.35 + 18)
-          .iterations(2))
+            .radius((d) => d.halfW * 0.65 + d.halfH * 0.35 + 18)
+            .iterations(2))
         .force('x', d3.forceX(this.width / 2).strength(0.03))
         .force('y', d3.forceY(this.height / 2).strength(0.03));
     }
@@ -364,8 +338,8 @@ export class UnderwaterGraph {
     this.nodes.forEach((d) => {
       // 1. 水中を漂うような微弱な周期的フォース（サイン・コサイン波）を加える
       const waveAngle = this.time * d.speed + d.phase;
-      d.vx += Math.cos(waveAngle) * 0.045;
-      d.vy += Math.sin(waveAngle * 0.8) * 0.045;
+      d.vx += Math.cos(waveAngle) * 0.10;
+      d.vy += Math.sin(waveAngle * 0.9) * 0.9;
 
       // 2. コンテナの枠外へはみ出さないよう境界で柔らかく押し戻す
       const minX = d.halfW + padX;
@@ -394,15 +368,6 @@ export class UnderwaterGraph {
         d.el.style.transform = `translate3d(${d.x}px, ${d.y}px, 0) translate(-50%, -50%)`;
       }
     });
-
-    // 4. SVGの関連線（エッジ）の両端座標を更新
-    if (this.linkSelection) {
-      this.linkSelection
-        .attr('x1', (d) => d.source.x)
-        .attr('y1', (d) => d.source.y)
-        .attr('x2', (d) => d.target.x)
-        .attr('y2', (d) => d.target.y);
-    }
   }
 
   /**

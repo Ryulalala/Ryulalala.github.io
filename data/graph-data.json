@@ -27,11 +27,6 @@
           "label": { "ja": "圏論", "en": "Category Theory" },
           "url": "https://github.com/"
         }
-      ],
-      "links": [
-        { "source": "elem_algebra", "target": "linear_algebra" },
-        { "source": "elem_algebra", "target": "category_theory" },
-        { "source": "linear_algebra", "target": "analysis" }
       ]
     },
     {
@@ -61,12 +56,6 @@
           "label": { "ja": "Rust", "en": "Rust" },
           "url": "https://github.com/"
         }
-      ],
-      "links": [
-        { "source": "cs", "target": "fp" },
-        { "source": "cs", "target": "oop" },
-        { "source": "fp", "target": "rust" },
-        { "source": "oop", "target": "rust" }
       ]
     },
     {
@@ -91,10 +80,6 @@
           "label": { "ja": "小林英雄", "en": "Hideo Kobayashi" },
           "url": "https://github.com/"
         }
-      ],
-      "links": [
-        { "source": "dostoevsky", "target": "kobayashi" },
-        { "source": "spinoza", "target": "kobayashi" }
       ]
     }
   ]
